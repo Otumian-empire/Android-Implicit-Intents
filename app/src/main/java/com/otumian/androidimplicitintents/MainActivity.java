@@ -1,16 +1,16 @@
 package com.otumian.androidimplicitintents;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ShareCompat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -89,5 +89,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void shareText(View view) {
+        String text = etText.getText().toString().trim();
+        final String title = "Share with";
+
+        if (text.length() >= 1) {
+            String mimeType = "text/plain";
+
+            ShareCompat.IntentBuilder intentBuilder = new ShareCompat.IntentBuilder(this);
+            intentBuilder.setType(mimeType).setChooserTitle(title).setText(text).startChooser();
+        } else {
+            Toast toast = Toast.makeText(this, "Please enter a text to share", Toast.LENGTH_LONG);
+            toast.show();
+        }
     }
 }
