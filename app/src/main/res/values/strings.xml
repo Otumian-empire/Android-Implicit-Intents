@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Android Implicit Intents</string>
+    <string name="enter_url">Enter url</string>
+    <string name="open_website">Open Website</string>
+    <string name="enter_location">Enter location</string>
+    <string name="open_location">Open Location</string>
+    <string name="enter_text">Enter text to share</string>
+    <string name="share_text">Share Text</string>
+</resources>
