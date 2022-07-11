@@ -67,6 +67,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void OpenLocation(View view) {
+        String url = etLocation.getText().toString().trim();
+
+        if (url.length() > 1) {
+            Uri uri = Uri.parse("geo:0,0?q=" + url);
+
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
+            } else {
+                Log.d(LOG_TAG, "Can't handle this!");
+                String text = "No package manager found, make sure you entered an actual location";
+                Toast toast = Toast.makeText(this, text, Toast.LENGTH_LONG);
+                toast.show();
+            }
+        } else {
+            Toast toast = Toast.makeText(this, "Please enter a location", Toast.LENGTH_LONG);
+            toast.show();
+        }
     }
 
     public void shareText(View view) {
